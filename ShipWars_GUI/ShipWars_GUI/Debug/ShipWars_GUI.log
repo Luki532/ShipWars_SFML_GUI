@@ -1,2 +1,48 @@
-﻿  Game.cpp
+﻿  Button.cpp
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(5,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(6,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(48,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(49,18): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(50,50): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(50,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(96,109): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(96,70): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(101,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(101,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Pole.cpp
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(14,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(14,28): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
   ShipWars_GUI.vcxproj -> C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\Debug\ShipWars_GUI.exe

@@ -14,8 +14,8 @@ void Pole::initPole(int positionx, int positiony)
 	this->krztalt.setPosition(positionx, positiony);
 	this->krztalt.setSize(this->size);
 	this->krztalt.setFillColor(this->color);
-	this->krztalt.setOutlineColor(this->outline);;
-	this->krztalt.setOutlineThickness(5);
+	//this->krztalt.setOutlineColor(this->outline);;
+	//this->krztalt.setOutlineThickness(5);
 
 	this->positionx = positionx;
 	this->positiony = positiony;
@@ -50,7 +50,7 @@ bool Pole::isStatek()
 void Pole::initPole()
 {
 
-	this->size = sf::Vector2f(50.f, 50.f);
+	this->size = sf::Vector2f(40.f, 40.f);
 	this->color = sf::Color::Cyan;
 	this->outline = sf::Color::Blue;
 

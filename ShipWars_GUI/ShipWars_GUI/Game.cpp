@@ -9,7 +9,7 @@ void Game::initVariables()
 	this->graczA.initGracz(this->window);
 	this->graczB.initGracz(this->window);
 
-	this->etap = Stage::rozgrywka;
+	this->etap = Stage::rozstawienieGraczaA;
 	this->akcje = 1;
 
 }
@@ -52,10 +52,10 @@ void Game::initButton()
 		&this->font, "Zakoncz ture",
 		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 
-	this->buttons["CHANGE_PLAYER_TO_A_BTN"] = new Button(40, 140, 150, 50,
+	this->buttons["CHANGE_PLAYER_TO_A_BTN"] = new Button(190, 540, 150, 50,
 		&this->font, "Kolej gracza A",
 		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
-	this->buttons["CHANGE_PLAYER_TO_B_BTN"] = new Button(40, 140, 150, 50,
+	this->buttons["CHANGE_PLAYER_TO_B_BTN"] = new Button(190, 540, 150, 50,
 		&this->font, "Kolej gracza B",
 		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 
@@ -167,14 +167,21 @@ void Game::updateButtons()
 		it.second->update(this->mousePosView);
 	}
 
-	if (this->akcje)
+	if (this->akcje == 0)
 		this->buttons["CHANGE_SEAT_BTN"]->showButton();
+	if(this->etap == Stage::przejscie)
+		this->buttons["CHANGE_SEAT_BTN"]->hideButton();
 
-	if (this->buttons["CHANGE_SEAT_BTN"]->isPressed() && this->akcje ==0)
+
+	if (this->buttons["CHANGE_SEAT_BTN"]->isPressed() && this->akcje == 0)
 	{
+		if(this->etap != Stage::przejscie)
+			this->poprzedniEtap = this->etap;
 		this->etap = Stage::przejscie;
 
-		if (this->playerA)
+		if (this->poprzedniEtap == Stage::rozstawienieGraczaB)
+			this->buttons["CHANGE_PLAYER_TO_A_BTN"]->showButton();
+		else if (this->playerA)
 			this->buttons["CHANGE_PLAYER_TO_B_BTN"]->showButton();
 		else
 			this->buttons["CHANGE_PLAYER_TO_A_BTN"]->showButton();
@@ -184,11 +191,19 @@ void Game::updateButtons()
 	if (this->buttons["CHANGE_PLAYER_TO_B_BTN"]->isPressed() && this->playerA)
 	{
 		this->resetAkcje();
-		this->etap = Stage::rozgrywka;
-		this->playerA = false;
+
+		if (this->poprzedniEtap == Stage::rozstawienieGraczaA)
+			this->etap = Stage::rozstawienieGraczaB;
+		else
+		{
+			this->etap = Stage::rozgrywka;
+			this->playerA = false;
+		}
+
 		this->buttons["CHANGE_PLAYER_TO_B_BTN"]->hideButton();
 	}
-	if (this->buttons["CHANGE_PLAYER_TO_A_BTN"]->isPressed() && !this->playerA)
+
+	if (this->buttons["CHANGE_PLAYER_TO_A_BTN"]->isPressed() && (!this->playerA || this->poprzedniEtap == Stage::rozstawienieGraczaB))
 	{
 		this->resetAkcje();
 		this->etap = Stage::rozgrywka;
@@ -212,7 +227,10 @@ void Game::updateRozgrywka()
 		this->upadteText("Rozstawienie gracza A, pozostalo statkow: " + std::to_string(this->graczA.getIloscUstawionych()));
 
 		if (this->graczA.getIloscUstawionych() == 0)
+		{
 			this->upadteText("Zakonczono ustawianie statkow Gracza A, zakoncz ture!");
+			this->akcje = 0;
+		}
 	}
 	break;
 	case Stage::rozstawienieGraczaB:
@@ -220,9 +238,10 @@ void Game::updateRozgrywka()
 		this->graczB.updateBoard(this->mousePosView);
 		this->upadteText("Rozstawienie gracza B, pozostalo statkow: " + std::to_string(this->graczB.getIloscUstawionych()));
 		if (this->graczB.getIloscUstawionych() == 0)
+		{
 			this->upadteText("Zakonczono ustawianie statkow Gracza B, zakoncz ture!");
-
-
+			this->akcje = 0;
+		}
 	}
 	break;
 	case Stage::przejscie:
@@ -312,16 +331,8 @@ void Game::renderRozgrywka(sf::RenderTarget& target)
 
 void Game::renderButtons(sf::RenderTarget& target)
 {
-	/*for (auto& it : this->buttons)
+	for (auto& it : this->buttons)
 	{
 		it.second->render(&target);
-	}*/
-	
-	if (this->akcje == 0 && this->etap != Stage::przejscie)
-		this->buttons["CHANGE_SEAT_BTN"]->render(&target);
-	if (this->etap == Stage::przejscie && this->playerA) //
-		this->buttons["CHANGE_PLAYER_TO_B_BTN"]->render(&target);
-	if (this->etap == Stage::przejscie && !this->playerA) //
-		this->buttons["CHANGE_PLAYER_TO_A_BTN"]->render(&target);
-
+	}
 }

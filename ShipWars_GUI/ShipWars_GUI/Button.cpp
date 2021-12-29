@@ -92,7 +92,8 @@ void Button::render(sf::RenderTarget* target)
 
 void Button::hideButton()
 {
-	this->shape.setPosition(sf::Vector2f(600, 1070));
+	
+	this->shape.setPosition(sf::Vector2f(sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height));
 }
 
 void Button::showButton()
