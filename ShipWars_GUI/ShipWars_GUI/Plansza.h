@@ -4,6 +4,7 @@
 
 #include "Pole.h"
 #include "Jednostka.h"
+#include "enums.h"
 
 class Plansza
 {
@@ -25,9 +26,11 @@ public:
 	void initPola();
 	void setStatek(int n, int positionx, int positiony, Statki rodzaj);
 	sf::RectangleShape getPole(int positionx, int positiony);
-	void clicked(int positionx, int positiony, sf::Color);
+	sf::Sprite getSprite(int positionx, int positiony);
+	void clicked(int positionx, int positiony, RodzajPola rodzaj); //Ustawianie statków
+	void clicked(int positionx, int positiony); //Rozgrywka
 	bool czyWidoczne(int positionx, int positiony);
 	bool czyJestStatek(int positionx, int positiony);
-
+	bool czyPoleJestWolne(int positionx, int positiony);
 };
 

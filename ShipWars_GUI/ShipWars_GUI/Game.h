@@ -46,7 +46,6 @@ private:
 	bool playerA; //czyja tura
 	int akcje;
 
-
 	//Game stage
 	Stage poprzedniEtap;
 	Stage etap;

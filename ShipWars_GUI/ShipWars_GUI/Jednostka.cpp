@@ -19,3 +19,13 @@ bool Jednostka::czyJestStatek(int positonx, int positiony)
 	
 	return false;
 }
+
+void Jednostka::trafienie()
+{
+	this->trafiony = true;
+}
+
+bool Jednostka::czyTrafiony()
+{
+	return this->trafiony;
+}

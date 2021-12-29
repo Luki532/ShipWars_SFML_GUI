@@ -16,5 +16,7 @@ public:
 	void initJednostka();
 	void setJednostka(int positionx, int positiony, Statki rodzaj);
 	bool czyJestStatek(int positionx, int positiony);
+	void trafienie();
+	bool czyTrafiony();
 };
 

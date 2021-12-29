@@ -1,12 +1,21 @@
 #include "Pole.h"
+#include "enums.h"
 
 Pole::Pole()
 {
 	this->initPole();
+	this->crossTexture.loadFromFile("images/Cross.png");
+	this->shipTexture.loadFromFile("images/Ship.png");
+	this->shipWreckTexture.loadFromFile("images/ShipWreck.png");
+
+
+	
 }
 
 Pole::~Pole()
 {
+	if(this->rodzaj != RodzajPola::Def)
+		delete this->Sprite;
 }
 
 void Pole::initPole(int positionx, int positiony)
@@ -14,22 +23,54 @@ void Pole::initPole(int positionx, int positiony)
 	this->krztalt.setPosition(positionx, positiony);
 	this->krztalt.setSize(this->size);
 	this->krztalt.setFillColor(this->color);
-	//this->krztalt.setOutlineColor(this->outline);;
-	//this->krztalt.setOutlineThickness(5);
-
 	this->positionx = positionx;
 	this->positiony = positiony;
+	
+	this->rodzaj = RodzajPola::Def;
 }
 
-void Pole::clicked(sf::Color color)
+void Pole::setColor(sf::Color color)
 {
 	this->krztalt.setFillColor(color);
-	this->widoczne = !this->widoczne;
 }
 
-sf::RectangleShape Pole::getKrztalt()
+
+void Pole::clicked(RodzajPola rodzaj)
 {
+	this->krztalt.setFillColor(sf::Color::Transparent);
+	this->rodzaj = rodzaj;
+	this->widoczne = !this->widoczne;
+	this->Sprite = new sf::Sprite(this->shipTexture);
+	this->Sprite->setPosition(this->positionx, this->positiony);
+}
+
+void Pole::clicked()
+{
+	if (this->rodzaj == RodzajPola::Def)
+	{
+		this->rodzaj = RodzajPola::Pudlo;
+		this->krztalt.setFillColor(sf::Color::Transparent);
+		this->Sprite = new sf::Sprite(this->crossTexture);
+		this->Sprite->setPosition(this->positionx, this->positiony);
+	}
+	else if (this->rodzaj == RodzajPola::Statek)
+	{
+		this->trafiony = true;
+		this->krztalt.setFillColor(sf::Color::Transparent);
+		this->Sprite = new sf::Sprite(this->shipWreckTexture);
+		this->Sprite->setPosition(this->positionx, this->positiony);
+	}
+}
+
+
+sf::RectangleShape Pole::getKrztalt()
+{	
 	return this->krztalt;
+}
+
+sf::Sprite Pole::getSprite()
+{
+	return *this->Sprite;
 }
 
 bool Pole::czyWidoczne()
@@ -37,22 +78,23 @@ bool Pole::czyWidoczne()
 	return this->widoczne;
 }
 
-void Pole::setStatek()
+RodzajPola Pole::getRodzaj()
 {
-	statek = true;
+	return this->rodzaj;
 }
 
-bool Pole::isStatek()
+bool Pole::czyPoleJestWolne()
 {
-	return this->statek;
+	if (this->rodzaj == RodzajPola::Def)
+		return true;
+	return false;
+
 }
 
 void Pole::initPole()
 {
-
 	this->size = sf::Vector2f(40.f, 40.f);
 	this->color = sf::Color::Cyan;
-	this->outline = sf::Color::Blue;
 
 	this->widoczne = false;
 }

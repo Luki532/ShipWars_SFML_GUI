@@ -11,7 +11,6 @@ void Game::initVariables()
 
 	this->etap = Stage::rozstawienieGraczaA;
 	this->akcje = 1;
-
 }
 
 void Game::initWindow()
@@ -69,6 +68,8 @@ Game::Game()
 	this->initFonts();
 	this->initText();
 	this->initButton();
+
+
 }
 
 Game::~Game()
@@ -78,6 +79,7 @@ Game::~Game()
 	{
 		delete it->second;
 	}
+
 
 	delete this->window;
 

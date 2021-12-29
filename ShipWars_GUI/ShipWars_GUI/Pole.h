@@ -1,22 +1,29 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "enums.h"
 class Pole
 {
 private:
 	//zmienne
 	int positionx;
 	int positiony;
-	bool statek = false;
+	RodzajPola rodzaj;
+	bool trafiony;
 
 	bool widoczne;
+
 
 	//Krzta³t
 	sf::RectangleShape krztalt;
 	sf::Vector2f size;
 	sf::Color color;
-	sf::Color outline;
 
 
+	//Texture
+	sf::Texture crossTexture;
+	sf::Texture shipTexture;
+	sf::Texture shipWreckTexture;
+	sf::Sprite* Sprite;
 
 public:
 	//Konstruktor
@@ -27,10 +34,13 @@ public:
 	//funckje
 	void initPole();
 	void initPole(int positionx, int positiony);
-	void clicked(sf::Color color);
+	void setColor(sf::Color color);
+	void clicked(RodzajPola rodzaj);//Ustawianie jednostek
+	void clicked();//Rozgrywka
 	sf::RectangleShape getKrztalt();
+	sf::Sprite getSprite();
 	bool czyWidoczne();
-	void setStatek();
-	bool isStatek();
+	RodzajPola getRodzaj();
+	bool czyPoleJestWolne();
 };
 

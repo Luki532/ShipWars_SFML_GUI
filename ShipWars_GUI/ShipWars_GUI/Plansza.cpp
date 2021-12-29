@@ -34,11 +34,19 @@ sf::RectangleShape Plansza::getPole(int positionx, int positiony)
 	return this->planszaGracza[positionx][positiony].getKrztalt();
 }
 
-void Plansza::clicked(int positionx, int positiony, sf::Color color)
+sf::Sprite Plansza::getSprite(int positionx, int positiony)
 {
-	this->planszaGracza[positionx][positiony].clicked(color);
-	this->planszaGracza[positionx][positiony].setStatek();
-	
+	return this->planszaGracza[positionx][positiony].getSprite();
+}
+
+void Plansza::clicked(int positionx, int positiony, RodzajPola rodzaj)
+{
+	this->planszaGracza[positionx][positiony].clicked(rodzaj);	
+}
+
+void Plansza::clicked(int positionx, int positiony)
+{
+	this->planszaGracza[positionx][positiony].clicked();
 }
 
 bool Plansza::czyWidoczne(int positionx, int positiony)
@@ -48,8 +56,16 @@ bool Plansza::czyWidoczne(int positionx, int positiony)
 
 bool Plansza::czyJestStatek(int positionx, int positiony)
 {
-	return planszaGracza[positionx][positiony].isStatek();
+	if (this->planszaGracza[positionx][positiony].getRodzaj() == RodzajPola::Statek)
+		return true;
 }
+
+bool Plansza::czyPoleJestWolne(int positionx, int positiony)
+{
+	return this->planszaGracza[positionx][positiony].czyPoleJestWolne();
+}
+
+
 
 
 

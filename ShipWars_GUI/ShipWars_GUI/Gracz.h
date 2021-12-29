@@ -24,11 +24,12 @@ public:
 
 	void renderBoard(sf::RenderWindow*);
 	//wcisniecie pola
-	void clicked(int positionx, int positiony, sf::Color color);
+	void clicked(int positionx, int positiony);
 	//resetowanie wartoœci co turê
 	void resetMoves();
 	int getIloscUstawionych();
 	bool getAkcje();
+	bool czyJestStatek(int positionx, int positiony);
 
 };
 
