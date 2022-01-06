@@ -35,6 +35,8 @@ private:
 
 	//Text
 	sf::Text uiText;
+	sf::Text playerName;
+	sf::Text enemyName;
 
 	//Button
 	std::map<std::string, Button*> buttons;
@@ -70,7 +72,7 @@ public:
 	void pollEvents();
 	void update();
 	void updateMousePositions();
-	void upadteText(std::string s);
+	void updateText(sf::Text* text, std::string s);
 	void updateButtons();
 	void updateRozgrywka();
 	void render();

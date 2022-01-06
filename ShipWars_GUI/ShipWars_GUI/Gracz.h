@@ -10,11 +10,14 @@ class Gracz
 {
 private:
 	//Game Boards
+	int const iloscStatkow = 3;
 	int const sizeOfBorads = 10;
 	Plansza planszaGracza;
 	PlanszaPrzeciwnika planszaPrzeciwnika;
 	int akcje;
 	int ustawienie_statkow;
+	int zbitychStatkow;
+	bool czyPrzegrany = false;
 
 public:
 	//funkcje
@@ -24,12 +27,14 @@ public:
 
 	void renderBoard(sf::RenderWindow*);
 	//wcisniecie pola
-	void clicked(int positionx, int positiony);
+	bool clicked(int positionx, int positiony);
 	//resetowanie wartoœci co turê
 	void resetMoves();
 	int getIloscUstawionych();
 	bool getAkcje();
 	bool czyJestStatek(int positionx, int positiony);
-
+	int iloscTrafionych();
+	bool czyKoniec();
+	bool czyPrzegral();
 };
 

@@ -36,11 +36,12 @@ public:
 	void initPole(int positionx, int positiony);
 	void setColor(sf::Color color);
 	void clicked(RodzajPola rodzaj);//Ustawianie jednostek
-	void clicked();//Rozgrywka
+	bool clicked();//Rozgrywka
 	sf::RectangleShape getKrztalt();
 	sf::Sprite getSprite();
 	bool czyWidoczne();
 	RodzajPola getRodzaj();
 	bool czyPoleJestWolne();
+	bool czyTrafione();
 };
 

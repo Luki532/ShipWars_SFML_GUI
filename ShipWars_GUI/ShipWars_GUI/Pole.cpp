@@ -6,10 +6,7 @@ Pole::Pole()
 	this->initPole();
 	this->crossTexture.loadFromFile("images/Cross.png");
 	this->shipTexture.loadFromFile("images/Ship.png");
-	this->shipWreckTexture.loadFromFile("images/ShipWreck.png");
-
-
-	
+	this->shipWreckTexture.loadFromFile("images/ShipWreck.png");	
 }
 
 Pole::~Pole()
@@ -25,6 +22,7 @@ void Pole::initPole(int positionx, int positiony)
 	this->krztalt.setFillColor(this->color);
 	this->positionx = positionx;
 	this->positiony = positiony;
+	this->trafiony = false;
 	
 	this->rodzaj = RodzajPola::Def;
 }
@@ -33,7 +31,6 @@ void Pole::setColor(sf::Color color)
 {
 	this->krztalt.setFillColor(color);
 }
-
 
 void Pole::clicked(RodzajPola rodzaj)
 {
@@ -44,14 +41,15 @@ void Pole::clicked(RodzajPola rodzaj)
 	this->Sprite->setPosition(this->positionx, this->positiony);
 }
 
-void Pole::clicked()
+bool Pole::clicked()
 {
-	if (this->rodzaj == RodzajPola::Def)
+	if (this->rodzaj == RodzajPola::Def )
 	{
 		this->rodzaj = RodzajPola::Pudlo;
 		this->krztalt.setFillColor(sf::Color::Transparent);
 		this->Sprite = new sf::Sprite(this->crossTexture);
 		this->Sprite->setPosition(this->positionx, this->positiony);
+		return false;
 	}
 	else if (this->rodzaj == RodzajPola::Statek)
 	{
@@ -59,9 +57,9 @@ void Pole::clicked()
 		this->krztalt.setFillColor(sf::Color::Transparent);
 		this->Sprite = new sf::Sprite(this->shipWreckTexture);
 		this->Sprite->setPosition(this->positionx, this->positiony);
+		return true;
 	}
 }
-
 
 sf::RectangleShape Pole::getKrztalt()
 {	
@@ -89,6 +87,11 @@ bool Pole::czyPoleJestWolne()
 		return true;
 	return false;
 
+}
+
+bool Pole::czyTrafione()
+{
+	return this->trafiony;
 }
 
 void Pole::initPole()

@@ -1,10 +1,5 @@
-﻿  Pole.cpp
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(23,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(23,28): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(44,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(44,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(54,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(54,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(61,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(61,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+﻿  Game.cpp
+  Gracz.cpp
+  main.cpp
+  Generating Code...
   ShipWars_GUI.vcxproj -> C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\Debug\ShipWars_GUI.exe

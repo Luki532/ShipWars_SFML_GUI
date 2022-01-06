@@ -21,7 +21,7 @@ void Plansza::initPola()
 {
 	for (int i = 0; i < this->sizeOfBorads; i++)
 		for (int j = 0; j < this->sizeOfBorads; j++)
-			planszaGracza[i][j].initPole((50 * i) + 5, (50 * j) + 25);
+			planszaGracza[i][j].initPole((50 * i) + 5, (50 * j) + 75);
 }
 
 void Plansza::setStatek(int n, int positionx, int positiony, Statki rodzaj)
@@ -44,9 +44,13 @@ void Plansza::clicked(int positionx, int positiony, RodzajPola rodzaj)
 	this->planszaGracza[positionx][positiony].clicked(rodzaj);	
 }
 
-void Plansza::clicked(int positionx, int positiony)
+bool Plansza::clicked(int positionx, int positiony)
 {
-	this->planszaGracza[positionx][positiony].clicked();
+	if (this->planszaGracza[positionx][positiony].clicked())
+	{
+		return true;
+	}
+	return false;
 }
 
 bool Plansza::czyWidoczne(int positionx, int positiony)
@@ -65,6 +69,16 @@ bool Plansza::czyPoleJestWolne(int positionx, int positiony)
 	return this->planszaGracza[positionx][positiony].czyPoleJestWolne();
 }
 
+int Plansza::iloscTrafionych()
+{
+	this->iloscZbitych = 0;
+	for (int i = 0; i < this->sizeOfBorads; i++)
+		for (int j = 0; j < this->sizeOfBorads; j++)
+			if (this->planszaGracza[i][j].czyTrafione())
+				this->iloscZbitych++;
+
+	return this->iloscZbitych;
+}
 
 
 

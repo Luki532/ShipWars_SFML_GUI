@@ -19,7 +19,7 @@ void Game::initWindow()
 	/*
 	Zmieniæ jeszcze pozycjê w przyciskach (chowanie)
 	*/
-	this->videoMode.height = 600;
+	this->videoMode.height = 650;
 	this->videoMode.width = 1070;
 	this->window = new sf::RenderWindow(this->videoMode, "ShipWars", sf::Style::Titlebar | sf::Style::Close);
 
@@ -42,19 +42,30 @@ void Game::initText()
 	this->uiText.setPosition(0, 0);
 	this->uiText.setString("TEST");
 
+	this->playerName.setFont(this->font);
+	this->playerName.setCharacterSize(18);
+	this->playerName.setFillColor(sf::Color::White);
+	this->playerName.setPosition(0, 20);
+	this->playerName.setString("TEST");
+
+	this->enemyName.setFont(this->font);
+	this->enemyName.setCharacterSize(18);
+	this->enemyName.setFillColor(sf::Color::White);
+	this->enemyName.setString("Plansza Gracza ");
+	this->enemyName.setPosition(this->window->getSize().x - this->enemyName.getGlobalBounds().width, 20);
 }
 
 void Game::initButton()
 {
 
-	this->buttons["CHANGE_SEAT_BTN"] = new Button(40, 540, 150, 50,
+	this->buttons["CHANGE_SEAT_BTN"] = new Button(40, 590, 150, 50,
 		&this->font, "Zakoncz ture",
 		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 
-	this->buttons["CHANGE_PLAYER_TO_A_BTN"] = new Button(190, 540, 150, 50,
+	this->buttons["CHANGE_PLAYER_TO_A_BTN"] = new Button(190, 590, 150, 50,
 		&this->font, "Kolej gracza A",
 		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
-	this->buttons["CHANGE_PLAYER_TO_B_BTN"] = new Button(190, 540, 150, 50,
+	this->buttons["CHANGE_PLAYER_TO_B_BTN"] = new Button(190, 590, 150, 50,
 		&this->font, "Kolej gracza B",
 		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 
@@ -132,8 +143,9 @@ void Game::updateMousePositions()
 	this->mousePosView = this->window->mapPixelToCoords(this->mousePosWindow);
 }
 
-void Game::upadteText(std::string s)
+void Game::updateText(sf::Text* text, std::string s)
 {
+
 	std::stringstream ss;
 
 	if (this->playerA)
@@ -141,7 +153,8 @@ void Game::upadteText(std::string s)
 	else
 		ss << s;
 
-	this->uiText.setString(ss.str());
+	this->enemyName.setPosition(this->window->getSize().x - this->enemyName.getGlobalBounds().width - 20, 20);
+	text->setString(ss.str());
 }
 
 void Game::render()
@@ -160,6 +173,8 @@ void Game::render()
 void Game::renderText(sf::RenderTarget& target)
 {
 	target.draw(this->uiText);
+	target.draw(this->playerName);
+	target.draw(this->enemyName);
 }
 
 void Game::updateButtons()
@@ -226,11 +241,13 @@ void Game::updateRozgrywka()
 	case Stage::rozstawienieGraczaA:
 	{
 		this->graczA.updateBoard(this->mousePosView);
-		this->upadteText("Rozstawienie gracza A, pozostalo statkow: " + std::to_string(this->graczA.getIloscUstawionych()));
+		this->updateText(&this->uiText ,"Rozstawienie gracza A, pozostalo statkow: " + std::to_string(this->graczA.getIloscUstawionych()));
+		this->updateText(&this->playerName, "Plansza Gracza A");
+		this->updateText(&this->enemyName, "Plansza Gracza B");
 
 		if (this->graczA.getIloscUstawionych() == 0)
 		{
-			this->upadteText("Zakonczono ustawianie statkow Gracza A, zakoncz ture!");
+			this->updateText(&this->uiText, "Zakonczono ustawianie statkow Gracza A, zakoncz ture!");
 			this->akcje = 0;
 		}
 	}
@@ -238,17 +255,20 @@ void Game::updateRozgrywka()
 	case Stage::rozstawienieGraczaB:
 	{
 		this->graczB.updateBoard(this->mousePosView);
-		this->upadteText("Rozstawienie gracza B, pozostalo statkow: " + std::to_string(this->graczB.getIloscUstawionych()));
+		this->updateText(&this->uiText, "Rozstawienie gracza B, pozostalo statkow: " + std::to_string(this->graczB.getIloscUstawionych()));
+		this->updateText(&this->playerName, "Plansza Gracza B");
+		this->updateText(&this->enemyName, "Plansza Gracza A");
 		if (this->graczB.getIloscUstawionych() == 0)
 		{
-			this->upadteText("Zakonczono ustawianie statkow Gracza B, zakoncz ture!");
+			this->updateText(&this->uiText, "Zakonczono ustawianie statkow Gracza B, zakoncz ture!");
 			this->akcje = 0;
+
 		}
 	}
 	break;
 	case Stage::przejscie:
 	{
-		this->upadteText("Przekarz kontrole!");
+		this->updateText(&this->uiText, "Przekarz kontrole!");
 	}
 	break;
 	case Stage::rozgrywka:
@@ -256,21 +276,40 @@ void Game::updateRozgrywka()
 		if (playerA)
 		{
 			this->graczA.updateBoard(this->mousePosView, &graczB);
-			this->upadteText("Gracz A");
+			this->updateText(&this->uiText, "Tura Gracz A");
+			this->updateText(&this->playerName, "Plansza Gracza A");
+			this->updateText(&this->enemyName, "Plansza Gracza B");
 			if (!this->graczA.getAkcje())
 				this->akcje = 0;
+
+			if (this->graczB.czyKoniec())
+				this->etap = Stage::koniec;
 
 		}
 		else
 		{
 			this->graczB.updateBoard(this->mousePosView, &graczA);
-			this->upadteText("Gracz B");
+			this->updateText(&this->uiText, "Tura Gracz B");
+			this->updateText(&this->playerName, "Plansza Gracza A");
+			this->updateText(&this->enemyName, "Plansza Gracza B");
 			if (!this->graczB.getAkcje())
 				this->akcje = 0;
+
+
+			if (this->graczA.czyKoniec())
+				this->etap = Stage::koniec;
+
 		}
 	}
 		break;
 	case Stage::koniec:
+	{
+		if(this->graczA.czyPrzegral())
+			this->updateText(&this->uiText, "Koniec gry, wygrywa gracz B");
+		else
+			this->updateText(&this->uiText, "Koniec gry, wygrywa gracz A");
+
+	}
 		break;
 	default:
 		break;

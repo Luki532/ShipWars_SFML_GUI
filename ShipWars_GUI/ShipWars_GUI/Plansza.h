@@ -15,6 +15,7 @@ protected:
 
 	//Wlasciwosci statkow na planszy
 	unsigned int iloscStatkow;
+	unsigned int iloscZbitych;
 	Jednostka* statki = new Jednostka[iloscStatkow];
 
 public:
@@ -28,9 +29,10 @@ public:
 	sf::RectangleShape getPole(int positionx, int positiony);
 	sf::Sprite getSprite(int positionx, int positiony);
 	void clicked(int positionx, int positiony, RodzajPola rodzaj); //Ustawianie statków
-	void clicked(int positionx, int positiony); //Rozgrywka
+	bool clicked(int positionx, int positiony); //Rozgrywka
 	bool czyWidoczne(int positionx, int positiony);
 	bool czyJestStatek(int positionx, int positiony);
 	bool czyPoleJestWolne(int positionx, int positiony);
+	int iloscTrafionych();
 };
 

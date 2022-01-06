@@ -20,8 +20,8 @@ void Gracz::updateBoard(sf::Vector2f mousePosView, Gracz* planszaPrzeciwnika)
 				if (this->planszaPrzeciwnika.getPole(i, j).getGlobalBounds().contains(mousePosView) && !this->planszaPrzeciwnika.czyWidoczne(i, j))
 				{
 					this->planszaPrzeciwnika.clicked(i, j);
-					planszaPrzeciwnika->clicked(i, j);
-					this->akcje--;
+					if (!planszaPrzeciwnika->clicked(i, j))
+						this->akcje--;
 				}
 			}
 
@@ -72,9 +72,9 @@ void Gracz::renderBoard(sf::RenderWindow* window)
 		}
 }
 
-void Gracz::clicked(int positionx, int positiony)
+bool Gracz::clicked(int positionx, int positiony)
 {
-	this->planszaGracza.clicked(positionx, positiony);
+	return this->planszaGracza.clicked(positionx, positiony);
 }
 
 void Gracz::resetMoves()
@@ -95,4 +95,24 @@ bool Gracz::getAkcje()
 bool Gracz::czyJestStatek(int positionx, int positiony)
 {
 	return this->planszaGracza.czyJestStatek(positionx, positiony);
+}
+
+int Gracz::iloscTrafionych()
+{
+	return this->planszaGracza.iloscTrafionych();
+}
+
+bool Gracz::czyKoniec()
+{
+	if (this->planszaGracza.iloscTrafionych() == this->iloscStatkow)
+	{
+		this->czyPrzegrany = true;
+		return true;
+	}
+	return false;
+}
+
+bool Gracz::czyPrzegral()
+{
+	return this->czyPrzegrany;
 }

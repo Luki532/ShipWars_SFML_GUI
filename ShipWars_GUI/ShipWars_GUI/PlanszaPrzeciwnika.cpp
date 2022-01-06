@@ -13,7 +13,7 @@ void PlanszaPrzeciwnika::initPolaPrzeciwnika()
 	for (int i = 0; i < this->sizeOfBorads; i++)
 		for (int j = 0; j < this->sizeOfBorads; j++)
 		{
-			planszaGracza[i][j].initPole((50 * i) + 560, (50 * j) + 25);
+			planszaGracza[i][j].initPole((50 * i) + 560, (50 * j) + 75);
 			planszaGracza[i][j].setColor(sf::Color::Red);
 
 		}
