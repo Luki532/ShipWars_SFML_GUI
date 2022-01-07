@@ -1,5 +1,19 @@
 ﻿  Game.cpp
   Gracz.cpp
+  Plansza.cpp
+  PlanszaPrzeciwnika.cpp
+  Pole.cpp
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(20,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(20,28): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(41,49): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(41,32): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(51,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(51,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(59,50): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(59,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   main.cpp
   Generating Code...
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Pole.cpp(62): warning C4715: 'Pole::clicked': not all control paths return a value
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Plansza.cpp(65): warning C4715: 'Plansza::czyJestStatek': not all control paths return a value
+  LINK : C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\Debug\ShipWars_GUI.exe not found or not built by the last incremental link; performing full link
   ShipWars_GUI.vcxproj -> C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\Debug\ShipWars_GUI.exe
