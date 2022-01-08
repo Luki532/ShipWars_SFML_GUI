@@ -1,6 +1,6 @@
 #include "Button.h"
 
-Button::Button(float x, float y, float width, float height, sf::Font* font, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
+Button::Button(float x, float y, float width, float height, sf::Font* font, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor, int size )
 {
 	this->x = x;
 	this->y = y;
@@ -13,7 +13,7 @@ Button::Button(float x, float y, float width, float height, sf::Font* font, std:
 	this->text.setFont(*this->font);
 	this->text.setString(text);
 	this->text.setFillColor(sf::Color::White);
-	this->text.setCharacterSize(12);
+	this->text.setCharacterSize(size);
 
 
 
@@ -46,7 +46,7 @@ void Button::setTextPosition()
 {
 	
 	int text_width = this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.0f) - (this->text.getGlobalBounds().width / 2.0f);
-	int text_height = this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.0f) - (this->text.getGlobalBounds().height / 2.0f);
+	int text_height = this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.0f) - (this->text.getGlobalBounds().height / 2.0f) - 4;
 	this->text.setPosition(sf::Vector2f(text_width, text_height));
 }
 

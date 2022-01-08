@@ -5,6 +5,7 @@
 #include "Plansza.h"
 #include "PlanszaPrzeciwnika.h"
 #include "enums.h"
+#include "TextBox.h"
 
 class Gracz
 {
@@ -18,12 +19,14 @@ private:
 	int ustawienie_statkow;
 	int zbitychStatkow;
 	bool czyPrzegrany = false;
+	std::string playerName;
 
 public:
 	//funkcje
 	void initGracz(sf::RenderWindow* window);
 	void updateBoard(sf::Vector2f mousePosView, Gracz* planszaPrzeciwnika);
 	void updateBoard(sf::Vector2f mousePosView);
+	void setPlayerName(std::string name);
 
 	void renderBoard(sf::RenderWindow*);
 	//wcisniecie pola
@@ -36,5 +39,6 @@ public:
 	int iloscTrafionych();
 	bool czyKoniec();
 	bool czyPrzegral();
+	std::string getName();
 };
 

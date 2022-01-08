@@ -9,21 +9,18 @@ void Game::initVariables()
 	this->graczA.initGracz(this->window);
 	this->graczB.initGracz(this->window);
 
-	this->etap = Stage::rozstawienieGraczaA;
+	this->etap = Stage::start;
 	this->akcje = 1;
 }
 
 void Game::initWindow()
 {
-
-	/*
-	Zmieniæ jeszcze pozycjê w przyciskach (chowanie)
-	*/
 	this->videoMode.height = 650;
 	this->videoMode.width = 1070;
 	this->window = new sf::RenderWindow(this->videoMode, "ShipWars", sf::Style::Titlebar | sf::Style::Close);
 
 	this->window->setFramerateLimit(60);
+	this->window->setKeyRepeatEnabled(true);
 }
 
 void Game::initFonts()
@@ -36,18 +33,49 @@ void Game::initFonts()
 
 void Game::initText()
 {
+	//Tytu³ gry
+	this->gameName.setFont(this->font);
+	this->gameName.setCharacterSize(64);
+	this->gameName.setFillColor(sf::Color::White);
+	this->gameName.setString("ShipWars");
+	this->gameName.setPosition(this->window->getSize().x/2 - this->gameName.getGlobalBounds().width/2, 50);
+
+	//Konfiguracja gracza A
+	this->playerAConfig.setFont(this->font);
+	this->playerAConfig.setCharacterSize(32);
+	this->playerAConfig.setFillColor(sf::Color::White);
+	this->playerAConfig.setString("Gracz pierwszy");
+	this->playerAConfig.setPosition(this->window->getSize().x / 2 - this->playerAConfig.getGlobalBounds().width / 2, 50);
+
+	this->playerNameInput.setFont(this->font);
+	this->playerNameInput.setCharacterSize(18);
+	this->playerNameInput.setFillColor(sf::Color::White);
+	this->playerNameInput.setString("Wpisz nazwe gracza, wcisnij enter lub kliknij");
+	this->playerNameInput.setPosition(this->window->getSize().x / 2 - this->playerNameInput.getGlobalBounds().width / 2, 150);
+
+	//Konfiguracja gracza B
+	this->playerBConfig.setFont(this->font);
+	this->playerBConfig.setCharacterSize(32);
+	this->playerBConfig.setFillColor(sf::Color::White);
+	this->playerBConfig.setString("Gracz drugi");
+	this->playerBConfig.setPosition(this->window->getSize().x / 2 - this->playerBConfig.getGlobalBounds().width / 2, 50);
+
+
+	//Obecny etap
 	this->uiText.setFont(this->font);
 	this->uiText.setCharacterSize(18);
 	this->uiText.setFillColor(sf::Color::White);
 	this->uiText.setPosition(0, 0);
 	this->uiText.setString("TEST");
 
+	//Podpis planszy gracza A
 	this->playerName.setFont(this->font);
 	this->playerName.setCharacterSize(18);
 	this->playerName.setFillColor(sf::Color::White);
 	this->playerName.setPosition(0, 20);
 	this->playerName.setString("TEST");
 
+	//Podpis planszy gracza B
 	this->enemyName.setFont(this->font);
 	this->enemyName.setCharacterSize(18);
 	this->enemyName.setFillColor(sf::Color::White);
@@ -57,7 +85,28 @@ void Game::initText()
 
 void Game::initButton()
 {
+	//Menu
+	this->buttons["START_GAME"] = new Button(this->window->getSize().x/2 - 75, 250, 175, 50,
+		&this->font, "Nowa Gra",
+		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200), 20);
 
+	this->buttons["RECORDS"] = new Button(this->window->getSize().x / 2 - 75, 325, 175, 50,
+		&this->font, "Tabela wynikow",
+		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200), 20);
+
+	this->buttons["END"] = new Button(this->window->getSize().x / 2 - 75, 400, 175, 50,
+		&this->font, "Koniec Gry",
+		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200), 20);
+
+	//Nowy gracz
+	this->buttons["ADD_PLAYER"] = new Button(this->window->getSize().x / 2 - 75, 300, 175, 50,
+		&this->font, "Przejdz dalej",
+		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200), 20);
+	this->buttons["NEXT_NEW_PLAYER"] = new Button(40, 590, 150, 50,
+		&this->font, "Kolejny gracz",
+		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200), 20);
+
+	//Rozgrywka
 	this->buttons["CHANGE_SEAT_BTN"] = new Button(40, 590, 150, 50,
 		&this->font, "Zakoncz ture",
 		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
@@ -65,10 +114,33 @@ void Game::initButton()
 	this->buttons["CHANGE_PLAYER_TO_A_BTN"] = new Button(190, 590, 150, 50,
 		&this->font, "Kolej gracza A",
 		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
+
 	this->buttons["CHANGE_PLAYER_TO_B_BTN"] = new Button(190, 590, 150, 50,
 		&this->font, "Kolej gracza B",
 		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200));
 
+
+	//Powrot
+	this->buttons["BACK"] = new Button(this->window->getSize().x / 2 - 75, 500, 175, 50,
+		&this->font, "Powrot",
+		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200), 20);
+
+}
+
+void Game::initTextBox()
+{
+	this->playerOne = new TextBox(28, sf::Color::Black, false);
+	this->playerOne->setFont(this->font);
+	this->playerOne->setPosition(this->window->getSize().x / 2 - 145, 200);
+	this->playerOne->setSize(sf::Vector2f(300, 50));
+	this->playerOne->setLimit(true, 18);
+
+
+	this->playerTwo = new TextBox(28, sf::Color::Black, false);
+	this->playerTwo->setFont(this->font);
+	this->playerTwo->setPosition(this->window->getSize().x / 2 - 145, 200);
+	this->playerTwo->setSize(sf::Vector2f(300, 50));
+	this->playerTwo->setLimit(true, 18);
 }
 
 //Public
@@ -79,12 +151,16 @@ Game::Game()
 	this->initFonts();
 	this->initText();
 	this->initButton();
+	this->initTextBox();
 
 
 }
 
 Game::~Game()
 {	
+	delete this->playerOne;
+	delete this->playerTwo;
+
 	auto it = this->buttons.begin();
 	for (it = this->buttons.begin(); it != this->buttons.end(); it++)
 	{
@@ -112,27 +188,19 @@ void Game::update()
 
 void Game::pollEvents()
 {
+
 	//EVENT POLLING
 	while (this->window->pollEvent(this->ev))
 	{
+		
 		switch (this->ev.type)
 		{
+
 		case sf::Event::Closed:
 			this->window->close();
-			break;
-		case sf::Event::KeyPressed:
-		{
-			if (this->ev.key.code == sf::Keyboard::Escape)
-				this->window->close();
-			else if (this->ev.key.code == sf::Keyboard::Tab)
-			{
-				if (etap == Stage::rozstawienieGraczaA)
-					continue;
-				this->playerA = !this->playerA;
-			}
-				
-		}
-			break;
+		break;
+		case sf::Event::TextEntered:
+			this->playerOne->typeOn(static_cast<char>(this->ev.text.unicode));		
 		}
 	}
 }
@@ -165,16 +233,36 @@ void Game::render()
 	this->renderText(*this->window);
 	this->renderButtons(*this->window);
 	this->renderRozgrywka(*this->window);
-
+	this->renderTextBox(*this->window);
 
 	this->window->display();
 }
 
 void Game::renderText(sf::RenderTarget& target)
 {
-	target.draw(this->uiText);
-	target.draw(this->playerName);
-	target.draw(this->enemyName);
+	if (this->etap == Stage::start)
+	{
+		target.draw(this->gameName);
+	}
+	else if (this->etap == Stage::nowa_gra_A)
+	{
+		target.draw(this->playerAConfig);
+		target.draw(this->playerNameInput);
+	}
+	else if (this->etap == Stage::nowa_gra_B)
+	{
+		target.draw(this->playerBConfig);
+		target.draw(this->playerNameInput);
+	}
+	else if (this->etap == Stage::rozstawienieGraczaA || this->etap == Stage::rozstawienieGraczaB || this->etap == Stage::rozgrywka)
+	{
+		target.draw(this->playerName);
+		target.draw(this->enemyName);
+	}
+	else
+	{
+		target.draw(this->uiText);
+	}
 }
 
 void Game::updateButtons()
@@ -184,11 +272,89 @@ void Game::updateButtons()
 		it.second->update(this->mousePosView);
 	}
 
+	if (this->etap == Stage::start)
+	{
+		this->buttons["START_GAME"]->showButton();
+		this->buttons["RECORDS"]->showButton();
+		this->buttons["END"]->showButton();
+	}
+	else
+	{
+		this->buttons["START_GAME"]->hideButton();
+		this->buttons["RECORDS"]->hideButton();
+		this->buttons["END"]->hideButton();
+	}
+
+	if (this->etap == Stage::nowa_gra_A || this->etap == Stage::nowa_gra_B)
+	{
+		this->buttons["ADD_PLAYER"]->showButton();
+		this->buttons["BACK"]->showButton();
+	}
+	else
+	{
+		this->buttons["ADD_PLAYER"]->hideButton();
+		this->buttons["BACK"]->hideButton();
+	}
+
+	//Wcisniety przycisk START GAME
+	if (this->buttons["START_GAME"]->isPressed())
+		this->etap = Stage::nowa_gra_A;
+
+	//Wcisniety przycisk END
+	if (this->buttons["END"]->isPressed())
+		this->window->close();
+
+	//Wcisniecie ADD_PLAYER
+	if (this->buttons["ADD_PLAYER"]->isPressed() && this->etap == Stage::nowa_gra_A)
+	{
+		if (this->playerOne->getText().length() == 0)
+			this->graczA.setPlayerName("Gracz");
+		else
+			this->graczA.setPlayerName(this->playerOne->getText());
+		this->poprzedniEtap = this->etap;
+		this->etap = Stage::przejscie;
+		
+	}
+	else if (this->buttons["ADD_PLAYER"]->isPressed() && this->etap == Stage::nowa_gra_B)
+	{
+		if (this->playerTwo->getText().length() == 0)
+			this->graczB.setPlayerName("Gracz");
+		else
+			this->graczB.setPlayerName(this->playerTwo->getText());
+		this->poprzedniEtap = this->etap;
+		this->etap = Stage::przejscie;
+	}
+	
+
+
+	if (this->poprzedniEtap == Stage::nowa_gra_A || this->poprzedniEtap == Stage::nowa_gra_B)
+		this->buttons["NEXT_NEW_PLAYER"]->showButton();
+	else
+		this->buttons["NEXT_NEW_PLAYER"]->hideButton();
+
+	if (this->buttons["NEXT_NEW_PLAYER"]->isPressed() && this->poprzedniEtap == Stage::nowa_gra_A)
+	{
+		this->poprzedniEtap = this->etap;
+		this->etap = Stage::nowa_gra_B;
+	}
+	else if (this->buttons["NEXT_NEW_PLAYER"]->isPressed() && this->poprzedniEtap == Stage::nowa_gra_B)
+	{
+		this->poprzedniEtap = this->etap;
+		this->etap = Stage::rozstawienieGraczaA;
+	}
+
+
+
+	//Wcisniecie przycisku BACK
+	if (this->buttons["BACK"]->isPressed())
+		this->etap = Stage::start;
+
+
+
 	if (this->akcje == 0)
 		this->buttons["CHANGE_SEAT_BTN"]->showButton();
 	if(this->etap == Stage::przejscie)
 		this->buttons["CHANGE_SEAT_BTN"]->hideButton();
-
 
 	if (this->buttons["CHANGE_SEAT_BTN"]->isPressed() && this->akcje == 0)
 	{
@@ -238,11 +404,34 @@ void Game::updateRozgrywka()
 
 	}
 	break;
+	case Stage::nowa_gra_A:
+	{
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+		{
+			this->playerOne->setSelected(true);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			this->playerOne->setSelected(false);
+		}
+	}
+	case Stage::nowa_gra_B:
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+		{
+			this->playerTwo->setSelected(true);
+		}
+		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		{
+			this->playerTwo->setSelected(false);
+		}
+	}
 	case Stage::rozstawienieGraczaA:
 	{
 		this->graczA.updateBoard(this->mousePosView);
-		this->updateText(&this->uiText ,"Rozstawienie gracza A, pozostalo statkow: " + std::to_string(this->graczA.getIloscUstawionych()));
-		this->updateText(&this->playerName, "Plansza Gracza A");
+		this->updateText(&this->uiText, "Rozstawienie gracza A, pozostalo statkow: " + std::to_string(this->graczA.getIloscUstawionych()));
+		this->updateText(&this->playerName, "Plansza " + this->graczA.getName());
 		this->updateText(&this->enemyName, "Plansza Gracza B");
 
 		if (this->graczA.getIloscUstawionych() == 0)
@@ -257,7 +446,7 @@ void Game::updateRozgrywka()
 		this->graczB.updateBoard(this->mousePosView);
 		this->updateText(&this->uiText, "Rozstawienie gracza B, pozostalo statkow: " + std::to_string(this->graczB.getIloscUstawionych()));
 		this->updateText(&this->playerName, "Plansza Gracza B");
-		this->updateText(&this->enemyName, "Plansza Gracza A");
+		this->updateText(&this->enemyName, "Plansza " + this->graczA.getName());
 		if (this->graczB.getIloscUstawionych() == 0)
 		{
 			this->updateText(&this->uiText, "Zakonczono ustawianie statkow Gracza B, zakoncz ture!");
@@ -329,6 +518,9 @@ void Game::renderRozgrywka(sf::RenderTarget& target)
 	switch (etap)
 	{
 	case Stage::start:
+	{
+		
+	}
 		break;
 	case Stage::rozstawienieGraczaA:
 	{
@@ -370,10 +562,19 @@ void Game::renderRozgrywka(sf::RenderTarget& target)
 
 }
 
+void Game::renderTextBox(sf::RenderTarget& target)
+{
+	if (this->etap == Stage::nowa_gra_A)
+		this->playerOne->drawTo(*this->window);
+	else if(this->etap == Stage::nowa_gra_B)
+		this->playerTwo->drawTo(*this->window);
+}
+
 void Game::renderButtons(sf::RenderTarget& target)
 {
 	for (auto& it : this->buttons)
 	{
 		it.second->render(&target);
 	}
+	
 }

@@ -48,6 +48,11 @@ void Gracz::updateBoard(sf::Vector2f mousePosView)
 		}
 }
 
+void Gracz::setPlayerName(std::string name)
+{
+	this->playerName = name;
+}
+
 void Gracz::renderBoard(sf::RenderWindow* window)
 {
 	for (int i = 0; i < this->sizeOfBorads; i++)
@@ -115,4 +120,9 @@ bool Gracz::czyKoniec()
 bool Gracz::czyPrzegral()
 {
 	return this->czyPrzegrany;
+}
+
+std::string Gracz::getName()
+{
+	return this->playerName;
 }

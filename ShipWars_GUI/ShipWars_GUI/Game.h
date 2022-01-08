@@ -13,6 +13,7 @@
 #include "Gracz.h"
 #include "Button.h"
 #include "enums.h"
+#include "TextBox.h"
 
 //Klasa dzia³ania ca³ej gry
 
@@ -37,9 +38,18 @@ private:
 	sf::Text uiText;
 	sf::Text playerName;
 	sf::Text enemyName;
+	sf::Text gameName;
+	sf::Text playerAConfig;
+	sf::Text playerNameInput;
+	sf::Text playerBConfig;
+
 
 	//Button
 	std::map<std::string, Button*> buttons;
+
+	//TextBox
+	TextBox* playerOne;
+	TextBox* playerTwo;
 
 
 	//Game logic
@@ -58,6 +68,7 @@ private:
 	void initFonts();
 	void initText();
 	void initButton();
+	void initTextBox();
 
 public:
 	//konstruktor
@@ -79,6 +90,7 @@ public:
 	void renderText(sf::RenderTarget& target);
 	void renderButtons(sf::RenderTarget& target);
 	void renderRozgrywka(sf::RenderTarget& target);
+	void renderTextBox(sf::RenderTarget& target);
 	void resetAkcje();
 };
 
