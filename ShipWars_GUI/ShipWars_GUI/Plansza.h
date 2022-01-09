@@ -34,5 +34,6 @@ public:
 	bool czyJestStatek(int positionx, int positiony);
 	bool czyPoleJestWolne(int positionx, int positiony);
 	int iloscTrafionych();
+	void setRodzaj(int positionx, int positiony, RodzajPola rodzaj);
 };
 

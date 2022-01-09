@@ -136,7 +136,7 @@ void Game::initTextBox()
 	this->playerOne->setLimit(true, 18);
 
 
-	this->playerTwo = new TextBox(28, sf::Color::Black, true);
+	this->playerTwo = new TextBox(28, sf::Color::Black, false);
 	this->playerTwo->setFont(this->font);
 	this->playerTwo->setPosition(this->window->getSize().x / 2 - 145, 200);
 	this->playerTwo->setSize(sf::Vector2f(300, 50));
@@ -433,7 +433,7 @@ void Game::updateRozgrywka()
 	}
 	case Stage::nowa_gra_B:
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::RShift))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
 			this->playerTwo->setSelected(true);
 		}

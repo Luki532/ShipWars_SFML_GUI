@@ -22,9 +22,12 @@ void Gracz::updateBoard(sf::Vector2f mousePosView, Gracz* planszaPrzeciwnika)
 					this->planszaPrzeciwnika.clicked(i, j);
 					if (!planszaPrzeciwnika->clicked(i, j))
 						this->akcje--;
+					else
+					{
+						this->planszaPrzeciwnika.setRodzaj(i, j, RodzajPola::Wrak);
+					}
 				}
 			}
-
 	}
 }
 
@@ -120,6 +123,11 @@ bool Gracz::czyKoniec()
 bool Gracz::czyPrzegral()
 {
 	return this->czyPrzegrany;
+}
+
+void Gracz::setPosition(int positionx, int positiony)
+{
+	this->planszaPrzeciwnika.setRodzaj(positionx, positiony, RodzajPola::Wrak);
 }
 
 std::string Gracz::getName()

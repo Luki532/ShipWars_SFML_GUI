@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "enums.h"
+
 class Pole
 {
 private:
@@ -43,5 +44,6 @@ public:
 	RodzajPola getRodzaj();
 	bool czyPoleJestWolne();
 	bool czyTrafione();
+	void setRodzaj(RodzajPola rodzaj);
 };
 

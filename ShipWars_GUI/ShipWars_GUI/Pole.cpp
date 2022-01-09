@@ -94,6 +94,18 @@ bool Pole::czyTrafione()
 	return this->trafiony;
 }
 
+void Pole::setRodzaj(RodzajPola rodzaj)
+{
+	this->rodzaj = rodzaj;
+	if (this->rodzaj == RodzajPola::Wrak)
+	{
+		this->krztalt.setFillColor(sf::Color::Transparent);
+		this->Sprite = new sf::Sprite(this->shipWreckTexture);
+		this->Sprite->setPosition(this->positionx, this->positiony);
+	}
+
+}
+
 void Pole::initPole()
 {
 	this->size = sf::Vector2f(40.f, 40.f);

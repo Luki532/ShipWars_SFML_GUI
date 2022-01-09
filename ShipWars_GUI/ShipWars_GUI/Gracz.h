@@ -39,6 +39,7 @@ public:
 	int iloscTrafionych();
 	bool czyKoniec();
 	bool czyPrzegral();
+	void setPosition(int positionx, int positiony);
 	std::string getName();
 };
 

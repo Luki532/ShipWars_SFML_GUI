@@ -80,6 +80,11 @@ int Plansza::iloscTrafionych()
 	return this->iloscZbitych;
 }
 
+void Plansza::setRodzaj(int positionx, int positiony, RodzajPola rodzaj)
+{
+	this->planszaGracza[positionx][positiony].setRodzaj(rodzaj);
+}
+
 
 
 
