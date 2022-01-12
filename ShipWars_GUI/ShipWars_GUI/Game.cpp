@@ -6,8 +6,7 @@ void Game::initVariables()
 {
 	
 	this->playerA = true;
-	this->graczA.initGracz(this->window);
-	this->graczB.initGracz(this->window);
+
 
 	this->etap = Stage::start;
 	this->akcje = 1;
@@ -322,6 +321,7 @@ void Game::updateButtons()
 		this->buttons["START_GAME"]->showButton();
 		this->buttons["RECORDS"]->showButton();
 		this->buttons["END"]->showButton();
+
 	}
 	else
 	{
@@ -334,20 +334,27 @@ void Game::updateButtons()
 	{
 		this->buttons["ADD_PLAYER"]->showButton();
 		this->buttons["BACK"]->showButton();
+		this->buttons["CHANGE_PLAYER_TO_A_BTN"]->hideButton();
+		this->buttons["CHANGE_PLAYER_TO_B_BTN"]->hideButton();
 	}
 	else
 	{
+
 		this->buttons["ADD_PLAYER"]->hideButton();
 		this->buttons["BACK"]->hideButton();
 	}
 
-	//Wcisniety przycisk START GAME
+	//Wcisniety przycisk TABLICA WYNIKOW
 	if (this->buttons["RECORDS"]->isPressed())
 		this->etap = Stage::tabela;
 	
-	//Wcisniety przycisk TABLICA WYNIKOW
+	//Wcisniety przycisk  START GAME
 	if (this->buttons["START_GAME"]->isPressed())
+	{
+		this->graczA.initGracz(this->window);
+		this->graczB.initGracz(this->window);
 		this->etap = Stage::nowa_gra_A;
+	}
 
 	//Wcisniety przycisk END
 	if (this->buttons["END"]->isPressed())
@@ -538,7 +545,7 @@ void Game::updateRozgrywka()
 		if (playerA)
 		{
 			this->graczA.updateBoard(this->mousePosView, &graczB);
-			this->updateText(&this->uiText, "Tura Gracz A");
+			this->updateText(&this->uiText, "Tura Gracz " + this->graczA.getName());
 			this->updateText(&this->playerName, "Plansza " + this->graczA.getName());
 			this->updateText(&this->enemyName, "Plansza " + this->graczB.getName());
 			if (!this->graczA.getAkcje())
@@ -555,7 +562,7 @@ void Game::updateRozgrywka()
 		else
 		{
 			this->graczB.updateBoard(this->mousePosView, &graczA);
-			this->updateText(&this->uiText, "Tura Gracz B");
+			this->updateText(&this->uiText, "Tura Gracz " + this->graczB.getName());
 			this->updateText(&this->playerName, "Plansza " + this->graczA.getName());
 			this->updateText(&this->enemyName, "Plansza " + this->graczB.getName());
 			if (!this->graczB.getAkcje())
@@ -602,6 +609,7 @@ void Game::updateRozgrywka()
 			saveGame(time, std::to_string(this->graczB.iloscTrafionych()), std::to_string(this->graczA.iloscTrafionych()), std::to_string(this->iloscTur - 1));
 			this->czyZapisano = true;
 		}
+		this->akcje = 1;
 
 	}
 		break;

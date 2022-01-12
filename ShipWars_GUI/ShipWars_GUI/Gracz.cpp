@@ -133,3 +133,9 @@ std::string Gracz::getName()
 {
 	return this->playerName;
 }
+
+void Gracz::resetGracz()
+{
+	this->planszaGracza.resetPlansza();
+	this->planszaPrzeciwnika.resetPlansza();
+}

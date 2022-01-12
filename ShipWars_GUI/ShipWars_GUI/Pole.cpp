@@ -106,6 +106,18 @@ void Pole::setRodzaj(RodzajPola rodzaj)
 
 }
 
+void Pole::resetPole()
+{
+
+	this->krztalt.setPosition(this->positionx, this->positiony);
+	this->krztalt.setSize(this->size);
+	this->krztalt.setFillColor(this->color);
+	this->trafiony = false;
+
+	this->rodzaj = RodzajPola::Def;
+
+}
+
 void Pole::initPole()
 {
 	this->size = sf::Vector2f(40.f, 40.f);

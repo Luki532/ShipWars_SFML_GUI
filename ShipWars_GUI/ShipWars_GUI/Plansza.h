@@ -35,7 +35,7 @@ public:
 	bool czyPoleJestWolne(int positionx, int positiony);
 	int iloscTrafionych();
 	void setRodzaj(int positionx, int positiony, RodzajPola rodzaj);
-	void deletePlansza();
+	void resetPlansza();
 
 
 };

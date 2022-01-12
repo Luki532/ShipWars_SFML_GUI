@@ -45,5 +45,6 @@ public:
 	bool czyPoleJestWolne();
 	bool czyTrafione();
 	void setRodzaj(RodzajPola rodzaj);
+	void resetPole();
 };
 

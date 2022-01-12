@@ -81,18 +81,12 @@ void Plansza::setRodzaj(int positionx, int positiony, RodzajPola rodzaj)
 	this->planszaGracza[positionx][positiony].setRodzaj(rodzaj);
 }
 
-void Plansza::deletePlansza()
+void Plansza::resetPlansza()
 {
-	for (int i = 0; i < this->sizeOfBorads; i++)
-		delete[] this->planszaGracza[i];
-
-	delete[] this->planszaGracza;
+	for(int i = 0; i < this->sizeOfBorads; i++)
+		for(int j = 0; j < this->sizeOfBorads; j++)
+		this->planszaGracza[i][j].resetPole();
 }
-
-void Plansza::reset()
-{
-}
-
 
 
 
