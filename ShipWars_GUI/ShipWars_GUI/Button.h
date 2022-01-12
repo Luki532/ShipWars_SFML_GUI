@@ -37,5 +37,6 @@ public:
 	void render(sf::RenderTarget* target);
 	void hideButton();
 	void showButton();
+	void changePos(float x, float y, std::string text);
 };
 

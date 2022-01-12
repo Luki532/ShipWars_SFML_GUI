@@ -40,8 +40,6 @@ const bool Button::isPressed() const
 }
 
 //Functions
-
-
 void Button::setTextPosition()
 {
 	
@@ -99,4 +97,11 @@ void Button::hideButton()
 void Button::showButton()
 {
 	this->shape.setPosition(sf::Vector2f(this->x, this->y));
+}
+
+void Button::changePos(float x, float y, std::string text)
+{
+	this->x = x;
+	this->y = y;
+	this->text.setString(text);
 }

@@ -6,7 +6,7 @@ void Gracz::initGracz(sf::RenderWindow* window)
 	this->planszaGracza.initPlansza(window);
 	this->planszaPrzeciwnika.initPlanszaPrzeciwnika();
 	this->akcje = 1;
-	this->ustawienie_statkow = 3;
+	this->ustawienie_statkow = 10;
 }
 
 //Rozgrywka

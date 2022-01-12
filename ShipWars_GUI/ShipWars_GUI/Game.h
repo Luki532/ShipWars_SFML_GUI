@@ -8,6 +8,8 @@
 #include <sstream>
 #include <chrono>
 #include <thread>
+#include <cmath>
+#include <fstream>
 #include "Plansza.h"
 #include "PlanszaPrzeciwnika.h"
 #include "Gracz.h"
@@ -42,7 +44,9 @@ private:
 	sf::Text playerAConfig;
 	sf::Text playerNameInput;
 	sf::Text playerBConfig;
-
+	sf::Text wynikGry;
+	sf::Text gameResult;
+	sf::Text gameResultTab[10];
 
 	//Button
 	std::map<std::string, Button*> buttons;
@@ -57,10 +61,16 @@ private:
 	Gracz graczB;
 	bool playerA; //czyja tura
 	int akcje;
+	bool czyZapisano;
 
 	//Game stage
 	Stage poprzedniEtap;
 	Stage etap;
+
+	std::chrono::high_resolution_clock::time_point start;
+	std::chrono::high_resolution_clock::time_point stop;
+
+	int iloscTur;
 
 	//funkcje
 	void initVariables();
@@ -92,6 +102,9 @@ public:
 	void renderRozgrywka(sf::RenderTarget& target);
 	void renderTextBox(sf::RenderTarget& target);
 	void resetAkcje();
+
+	void saveGame(std::string czas, std::string iloscA, std::string iloscB, std::string iloscTur);
+	void loadGame();
 };
 
 

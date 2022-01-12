@@ -14,7 +14,7 @@ void Plansza::initPlansza(sf::RenderWindow* window)
 		this->planszaGracza[i] = new Pole[this->sizeOfBorads];
 
 	initPola();
-	this->iloscStatkow = 3;
+	this->iloscStatkow = 10;
 }
 
 void Plansza::initPola()

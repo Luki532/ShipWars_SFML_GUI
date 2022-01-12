@@ -1,82 +1,48 @@
-﻿  Button.cpp
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(5,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(6,12): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(48,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(49,18): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(50,50): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(50,38): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(96,109): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(96,70): warning C4244: 'argument': conversion from 'unsigned int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(101,52): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Button.cpp(101,43): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-  Game.cpp
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(89,71): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+﻿  Game.cpp
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(108,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(116,71): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(93,70): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(120,70): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(97,66): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(124,66): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(102,73): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(129,73): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(124,67): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(151,67): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(134,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(161,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(141,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(168,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=unsigned int
           ]
-  main.cpp
-  Generating Code...
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(321,65): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(421,65): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
   ShipWars_GUI.vcxproj -> C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\Debug\ShipWars_GUI.exe

@@ -11,7 +11,7 @@ class Gracz
 {
 private:
 	//Game Boards
-	int const iloscStatkow = 3;
+	int const iloscStatkow = 10;
 	int const sizeOfBorads = 10;
 	Plansza planszaGracza;
 	PlanszaPrzeciwnika planszaPrzeciwnika;

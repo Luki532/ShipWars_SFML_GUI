@@ -32,12 +32,15 @@ void TextBox::deleteLastChar()
 
 TextBox::TextBox()
 {
+	this->limit = 0;
 }
 TextBox::TextBox(int size, sf::Color color, bool sel)
 {
 	this->shape.setFillColor(sf::Color::White);
 	this->shape.setOutlineColor(sf::Color(150, 150, 150, 255));
 	this->shape.setOutlineThickness(5);
+	this->limit = 0;
+
 
 	this->textBox.setCharacterSize(size);
 	this->textBox.setFillColor(color);

@@ -11,6 +11,8 @@ void Game::initVariables()
 
 	this->etap = Stage::start;
 	this->akcje = 1;
+	this->iloscTur = 1;
+	this->czyZapisano = false;
 }
 
 void Game::initWindow()
@@ -81,6 +83,31 @@ void Game::initText()
 	this->enemyName.setFillColor(sf::Color::White);
 	this->enemyName.setString("Plansza Gracza ");
 	this->enemyName.setPosition(this->window->getSize().x - this->enemyName.getGlobalBounds().width, 20);
+
+	//Koniec gry
+	this->wynikGry.setFont(this->font);
+	this->wynikGry.setCharacterSize(32);
+	this->wynikGry.setFillColor(sf::Color::White);
+	this->wynikGry.setString("Koniec gry, wygrywa gracz");
+	this->wynikGry.setPosition(this->window->getSize().x / 2 - this->wynikGry.getGlobalBounds().width / 2, 50);
+
+	this->gameResult.setFont(this->font);
+	this->gameResult.setCharacterSize(24);
+	this->gameResult.setFillColor(sf::Color::White);
+	this->gameResult.setString("Wynik gry:");
+	this->gameResult.setPosition(this->window->getSize().x / 2 - this->gameResult.getGlobalBounds().width / 2, 50);
+
+
+
+	for (int i = 0; i < 10; i++)
+	{
+		this->gameResultTab[i].setFont(this->font);
+		this->gameResultTab[i].setCharacterSize(24);
+		this->gameResultTab[i].setFillColor(sf::Color::White);
+		this->gameResultTab[i].setString("Wynik gry:");
+		this->gameResultTab[i].setPosition(30, 120+40*i);
+	}
+
 }
 
 void Game::initButton()
@@ -121,7 +148,7 @@ void Game::initButton()
 
 
 	//Powrot
-	this->buttons["BACK"] = new Button(this->window->getSize().x / 2 - 75, 500, 175, 50,
+	this->buttons["BACK"] = new Button(this->window->getSize().x / 2 - 75, 550, 175, 50,
 		&this->font, "Powrot",
 		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 255), sf::Color(20, 20, 20, 200), 20);
 
@@ -158,7 +185,7 @@ Game::Game()
 
 Game::~Game()
 {	
-	//delete this->playerOne;
+	delete this->playerOne;
 	delete this->playerTwo;
 
 	auto it = this->buttons.begin();
@@ -262,6 +289,20 @@ void Game::renderText(sf::RenderTarget& target)
 		target.draw(this->playerName);
 		target.draw(this->enemyName);
 	}
+	else if (this->etap == Stage::koniec)
+	{
+		target.draw(this->wynikGry);
+		target.draw(this->gameResult);
+		
+		
+	}
+	else if (this->etap == Stage::tabela)
+	{
+		target.draw(this->wynikGry);
+
+		for (int i = 0; i < 10; i++)
+			target.draw(this->gameResultTab[i]);
+	}
 	else
 	{
 		target.draw(this->uiText);
@@ -277,6 +318,7 @@ void Game::updateButtons()
 
 	if (this->etap == Stage::start)
 	{
+		this->buttons["END"]->changePos(this->window->getSize().x / 2 - 75, 400, "Koniec Gry");
 		this->buttons["START_GAME"]->showButton();
 		this->buttons["RECORDS"]->showButton();
 		this->buttons["END"]->showButton();
@@ -300,6 +342,10 @@ void Game::updateButtons()
 	}
 
 	//Wcisniety przycisk START GAME
+	if (this->buttons["RECORDS"]->isPressed())
+		this->etap = Stage::tabela;
+	
+	//Wcisniety przycisk TABLICA WYNIKOW
 	if (this->buttons["START_GAME"]->isPressed())
 		this->etap = Stage::nowa_gra_A;
 
@@ -337,6 +383,7 @@ void Game::updateButtons()
 			this->playerTwo->reset();
 		}
 		this->poprzedniEtap = this->etap;
+		this->start = std::chrono::high_resolution_clock::now();
 		this->etap = Stage::przejscie;
 	}
 	
@@ -364,6 +411,16 @@ void Game::updateButtons()
 	if (this->buttons["BACK"]->isPressed())
 		this->etap = Stage::start;
 
+	//Przycisk powrot w tablicy wynikow i na koncu
+	if (this->etap == Stage::tabela || this->etap == Stage::koniec)
+		this->buttons["BACK"]->showButton();
+
+	//Przycisk koniec na koncu
+	if (this->etap == Stage::koniec)
+	{
+		this->buttons["END"]->changePos(this->window->getSize().x / 2 - 75, 480, "Koniec Gry");
+		this->buttons["END"]->showButton();
+	}
 
 
 	if (this->akcje == 0)
@@ -407,6 +464,7 @@ void Game::updateButtons()
 		this->etap = Stage::rozgrywka;
 		this->playerA = true;
 		this->buttons["CHANGE_PLAYER_TO_A_BTN"]->hideButton();
+		this->iloscTur++;
 	}
 }
 
@@ -487,7 +545,11 @@ void Game::updateRozgrywka()
 				this->akcje = 0;
 
 			if (this->graczB.czyKoniec())
+			{
+				this->stop = std::chrono::high_resolution_clock::now();
+
 				this->etap = Stage::koniec;
+			}
 
 		}
 		else
@@ -501,20 +563,55 @@ void Game::updateRozgrywka()
 
 
 			if (this->graczA.czyKoniec())
+			{
+				this->stop = std::chrono::high_resolution_clock::now();
+
 				this->etap = Stage::koniec;
+			}
 
 		}
 	}
 		break;
 	case Stage::koniec:
 	{
+
 		if(this->graczA.czyPrzegral())
-			this->updateText(&this->uiText, "Koniec gry, wygrywa gracz " + this->graczB.getName() + "!");
+			this->updateText(&this->wynikGry, "Koniec gry, wygrywa gracz " + this->graczB.getName() + "!");
 		else
-			this->updateText(&this->uiText, "Koniec gry, wygrywa gracz " + this->graczA.getName() + "!");
+			this->updateText(&this->wynikGry, "Koniec gry, wygrywa gracz " + this->graczA.getName() + "!");
+		this->wynikGry.setPosition(this->window->getSize().x / 2 - this->wynikGry.getGlobalBounds().width / 2, 50);
+
+		
+		std::ostringstream out;
+		out << std::chrono::duration<double>(this->stop - this->start).count();
+		std::string time = (out.str()).substr(0, out.str().size() - 4) + "s";
+
+		std::string result =
+			"Podsumowanie gry: \nCzas gry: " + time + "\n"
+			+ "Trafionych statkow przez gracza " + this->graczA.getName() + ": " + std::to_string(this->graczB.iloscTrafionych()) + "\n"
+			+ "Trafionych statkow przez gracza " + this->graczB.getName() + ": " + std::to_string(this->graczA.iloscTrafionych()) + "\n"
+			+ "Ilosc tur: " + std::to_string(this->iloscTur-1);
+
+			;
+
+		this->updateText(&this->gameResult, result);
+		this->gameResult.setPosition(this->window->getSize().x / 2 - this->gameResult.getGlobalBounds().width / 2, 100);
+
+		if (!this->czyZapisano)
+		{
+			saveGame(time, std::to_string(this->graczB.iloscTrafionych()), std::to_string(this->graczA.iloscTrafionych()), std::to_string(this->iloscTur - 1));
+			this->czyZapisano = true;
+		}
 
 	}
 		break;
+	case Stage::tabela:
+	{
+		this->updateText(&this->wynikGry, "Tablica ostatnich 10 gier");
+
+		loadGame();
+
+	}
 	default:
 		break;
 	}
@@ -592,4 +689,67 @@ void Game::renderButtons(sf::RenderTarget& target)
 		it.second->render(&target);
 	}
 	
+}
+
+void Game::saveGame(std::string czas, std::string iloscA, std::string iloscB, std::string iloscTur)
+{
+	std::ofstream myFile;
+	myFile.open("GameResult.csv", std::ios::app);
+
+	myFile << "Czas gry: " << czas << " ilosc zbitych " << this->graczA.getName() << ": " << iloscA << " ilosc zbitych " << this->graczB.getName() << ": " << iloscB << " ilosc tur: " << iloscTur << "\n";
+
+	myFile.close();
+}
+
+void Game::loadGame()
+{
+
+	std::ifstream file("GameResult.csv");
+
+	if (file.is_open())
+	{
+		std::string line;
+		int i, j, lines;
+		i = j = lines = 0;
+
+		while (std::getline(file, line))
+			lines++;
+
+		file.clear();
+		file.seekg(0, std::ios::beg);
+
+		if(lines > 10)
+			while (std::getline(file, line))
+			{
+				if (i < lines - 10)
+				{
+					i++;
+					continue;
+				}
+				
+				this->updateText(&this->gameResultTab[j], line);
+				j++;
+				i++;
+
+			}
+		else
+		{
+			i = 0;
+			while (std::getline(file, line))
+			{
+				this->updateText(&this->gameResultTab[i], std::to_string(i+1) + ": " + line);
+				i++;
+			}
+
+			for (i; i < 10; i++)
+			{
+				this->updateText(&this->gameResultTab[i], std::to_string(i+1) + ": ----Brak danych----");
+
+			}
+		}
+
+		file.close();
+	}
+
+
 }
