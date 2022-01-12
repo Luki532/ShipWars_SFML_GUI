@@ -1,1 +1,48 @@
-﻿  ShipWars_GUI.vcxproj -> C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\Debug\ShipWars_GUI.exe
+﻿  Game.cpp
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(107,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(115,71): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(119,70): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(123,66): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(128,73): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(150,67): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(160,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(167,61): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(320,65): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\ShipWars_GUI\Game.cpp(428,65): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+  ShipWars_GUI.vcxproj -> C:\dev\C_Cpp\Cpp\ProjektPI\ShipWars_SFML_GUI\ShipWars_GUI\Debug\ShipWars_GUI.exe
