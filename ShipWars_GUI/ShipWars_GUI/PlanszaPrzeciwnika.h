@@ -4,6 +4,7 @@
 class PlanszaPrzeciwnika : public Plansza
 {
 public:
+
 	//funkcje
 	void initPlanszaPrzeciwnika();
 	//funkcje

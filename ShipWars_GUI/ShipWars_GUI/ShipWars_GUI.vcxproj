@@ -148,7 +148,6 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gracz.cpp" />
-    <ClCompile Include="Jednostka.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Plansza.cpp" />
     <ClCompile Include="PlanszaPrzeciwnika.cpp" />
@@ -160,7 +159,6 @@
     <ClInclude Include="enums.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gracz.h" />
-    <ClInclude Include="Jednostka.h" />
     <ClInclude Include="Plansza.h" />
     <ClInclude Include="PlanszaPrzeciwnika.h" />
     <ClInclude Include="Pole.h" />

@@ -4,7 +4,7 @@
 //Private
 void Game::initVariables()
 {
-	this->window = nullptr;
+	
 	this->playerA = true;
 	this->graczA.initGracz(this->window);
 	this->graczB.initGracz(this->window);
@@ -188,12 +188,12 @@ Game::~Game()
 	delete this->playerOne;
 	delete this->playerTwo;
 
+
 	auto it = this->buttons.begin();
 	for (it = this->buttons.begin(); it != this->buttons.end(); it++)
 	{
 		delete it->second;
 	}
-
 
 	delete this->window;
 

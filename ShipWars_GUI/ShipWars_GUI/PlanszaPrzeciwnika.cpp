@@ -1,5 +1,8 @@
 #include "PlanszaPrzeciwnika.h"
 
+
+
+
 void PlanszaPrzeciwnika::initPlanszaPrzeciwnika()
 {
 	for (int i = 0; i < this->sizeOfBorads; i++)
