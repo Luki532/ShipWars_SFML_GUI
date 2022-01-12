@@ -3,9 +3,9 @@
 Plansza::~Plansza()
 {
 	for (int i = 0; i < this->sizeOfBorads; i++)
-		delete[] planszaGracza[i];
+		delete[] this->planszaGracza[i];
 
-	delete[] planszaGracza;
+	delete[] this->planszaGracza;
 }
 
 void Plansza::initPlansza(sf::RenderWindow* window)
@@ -24,10 +24,6 @@ void Plansza::initPola()
 			planszaGracza[i][j].initPole((50 * i) + 5, (50 * j) + 75);
 }
 
-void Plansza::setStatek(int n, int positionx, int positiony, Statki rodzaj)
-{
-	this->statki[n].setJednostka(positionx, positiony, rodzaj);
-}
 
 sf::RectangleShape Plansza::getPole(int positionx, int positiony)
 {
@@ -83,6 +79,18 @@ int Plansza::iloscTrafionych()
 void Plansza::setRodzaj(int positionx, int positiony, RodzajPola rodzaj)
 {
 	this->planszaGracza[positionx][positiony].setRodzaj(rodzaj);
+}
+
+void Plansza::deletePlansza()
+{
+	for (int i = 0; i < this->sizeOfBorads; i++)
+		delete[] this->planszaGracza[i];
+
+	delete[] this->planszaGracza;
+}
+
+void Plansza::reset()
+{
 }
 
 

@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "Pole.h"
-#include "Jednostka.h"
+
 #include "enums.h"
 
 class Plansza
@@ -16,16 +16,16 @@ protected:
 	//Wlasciwosci statkow na planszy
 	unsigned int iloscStatkow;
 	unsigned int iloscZbitych;
-	Jednostka* statki = new Jednostka[iloscStatkow];
+	/*Jednostka* statki = new Jednostka[iloscStatkow];*/
 
 public:
 	//Destruktor
-	virtual	~Plansza();
+	virtual ~Plansza();
 
 	//funkcje
 	void initPlansza(sf::RenderWindow* window);
 	void initPola();
-	void setStatek(int n, int positionx, int positiony, Statki rodzaj);
+	//void setStatek(int n, int positionx, int positiony, Statki rodzaj);
 	sf::RectangleShape getPole(int positionx, int positiony);
 	sf::Sprite getSprite(int positionx, int positiony);
 	void clicked(int positionx, int positiony, RodzajPola rodzaj); //Ustawianie statków
@@ -35,5 +35,8 @@ public:
 	bool czyPoleJestWolne(int positionx, int positiony);
 	int iloscTrafionych();
 	void setRodzaj(int positionx, int positiony, RodzajPola rodzaj);
+	void deletePlansza();
+
+
 };
 

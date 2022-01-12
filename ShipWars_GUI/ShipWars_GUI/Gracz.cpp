@@ -41,7 +41,6 @@ void Gracz::updateBoard(sf::Vector2f mousePosView)
 			{
 				if (this->planszaGracza.getPole(i, j).getGlobalBounds().contains(mousePosView) && !this->planszaGracza.czyJestStatek(i,j))
 				{
-					this->planszaGracza.setStatek(this->ustawienie_statkow-3,i,j, Statki::Statek);
 					this->planszaGracza.clicked(i, j, RodzajPola::Statek);
 					this->ustawienie_statkow--;
 					this->akcje--;
